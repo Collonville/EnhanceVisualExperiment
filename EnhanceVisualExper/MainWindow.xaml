@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="362.745" Width="879.902">
     <Grid>
-        <ListView Name="ImgList" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+        <ListView Name="ImgList" ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="0,0,0,102">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -23,6 +23,8 @@
             </ListBox.ItemsPanel>
 
         </ListView>
+        <Button x:Name="NextBtn" Content="Next" HorizontalAlignment="Left" Margin="487,261,0,0" VerticalAlignment="Top" Width="143" Height="40" Click="NextBtn_Click" Background="#FFA9FFAD" FontSize="18"/>
+        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Left" Margin="257,261,0,0" VerticalAlignment="Top" Width="143" Height="40" Click="BackBtn_Click" Background="#FFFFA9A9" FontSize="18"/>
 
     </Grid>
 </Window>

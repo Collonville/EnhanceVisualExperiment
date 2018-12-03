@@ -20,6 +20,9 @@ namespace EnhanceVisualExper
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<string> imagePath;
+        private int watchingIndex = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -46,26 +49,32 @@ namespace EnhanceVisualExper
         private void BindList()
         {
             List<Image> list = new List<Image>();
-            List<string> imagePath = GetImageName();
+            imagePath = GetImageName();
 
-            foreach(var fileName in imagePath)
+            for (int i = 0; i < 100; i++)
             {
-
-                for (int i = 0; i < 1; i++)
+                list.Add(new Image
                 {
-                    list.Add(new Image
-                    {
-                        Index = (i + 1).ToString(),
-                        Path = @"A:\ドキュメント\Labo\LocalRipository\outimg\continuity_hue\" + fileName.Replace(".jpg", "") + "_" + i.ToString() + ".jpg"
-                    });
-                }
+                    Index = (i + 1).ToString(),
+                    Path = @"A:\ドキュメント\Labo\LocalRipository\outimg\continuity_hue\" + imagePath[watchingIndex].Replace(".jpg", "") + "_" + i.ToString() + ".jpg"
+                });
             }
 
-            
-
-
-
             ImgList.ItemsSource = list;
+        }
+
+        private void NextBtn_Click(object sender, RoutedEventArgs e)
+        {
+            watchingIndex++;
+
+            BindList();
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            watchingIndex--;
+
+            BindList();
         }
     }
 }

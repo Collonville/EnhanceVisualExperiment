@@ -65,12 +65,26 @@ namespace EnhanceVisualExper
             IndexLabel.Content = watchingIndex.ToString() + "/50";
         }
 
+        private void OutputResult()
+        {
+            //https://stackoverflow.com/questions/3836313/getting-the-index-of-multiple-selected-items-in-a-listbox-using-silverlight
+            List<int> selectedItemIndexes = (from object o in ImgList.SelectedItems select ImgList.Items.IndexOf(o)).ToList();
+
+            if(selectedItemIndexes.Count == 3)
+            {
+                Console.WriteLine(selectedItemIndexes[0] + "-" + selectedItemIndexes[1] + "-" + selectedItemIndexes[2]);
+            }
+            
+        }
+
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
             watchingIndex++;
 
             if (watchingIndex > 50)
                 watchingIndex = 50;
+
+            OutputResult();
 
             BindList();
         }

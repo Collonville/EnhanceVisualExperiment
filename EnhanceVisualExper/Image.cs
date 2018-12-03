@@ -8,7 +8,7 @@ namespace EnhanceVisualExper
 {
     class Image
     {
-        public string Title { get; set; }
+        public string Index { get; set; }
         public string Path { get; set; }
     }
 }

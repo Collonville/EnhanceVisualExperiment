@@ -10,7 +10,10 @@
         <ListView Name="ImgList" ScrollViewer.HorizontalScrollBarVisibility="Auto">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding Path}"/>
+                    <StackPanel>
+                        <Image Source="{Binding Path}"/>
+                        <TextBlock Text="{Binding Index}" HorizontalAlignment="Center"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListBox.ItemsPanel>

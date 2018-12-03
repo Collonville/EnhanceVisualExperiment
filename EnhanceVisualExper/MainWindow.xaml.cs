@@ -27,15 +27,41 @@ namespace EnhanceVisualExper
             BindList();
         }
 
+        private List<string> GetImageName()
+        {
+            List<string> fileNames = new List<string>();
+            
+            foreach(var fileName in System.IO.Directory.GetFiles(@"A:\ドキュメント\Labo\LocalRipository\img", "*", System.IO.SearchOption.AllDirectories))
+            {
+                //Only Filename
+                fileNames.Add(System.IO.Path.GetFileName(fileName));
+
+                //Filename & path
+                //fileNames.Add(fileName);
+            } 
+
+            return fileNames;
+        }
+
         private void BindList()
         {
             List<Image> list = new List<Image>();
+            List<string> imagePath = GetImageName();
 
-            for(int i = 0; i < 100; i++)
+            foreach(var fileName in imagePath)
             {
-                list.Add(new Image { Path = @"D:\Documents\Visual Studio 2017\Projects\EnhanceVisualExper\EnhanceVisualExper\Img\strawberry_"+ i.ToString() + ".jpg" });
 
+                for (int i = 0; i < 1; i++)
+                {
+                    list.Add(new Image
+                    {
+                        Index = (i + 1).ToString(),
+                        Path = @"A:\ドキュメント\Labo\LocalRipository\outimg\continuity_hue\" + fileName.Replace(".jpg", "") + "_" + i.ToString() + ".jpg"
+                    });
+                }
             }
+
+            
 
 
 

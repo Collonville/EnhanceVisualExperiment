@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EnhanceVisualExper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="362.745" Width="879.902">
-    <Grid>
-        <ListView Name="ImgList" ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="0,0,0,102">
+        Title="MainWindow" Height="273.696" Width="879.902">
+    <Grid Margin="0,0,0,17">
+        <ListView Name="ImgList" ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="0,0,0,72">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Image Source="{Binding Path}"/>
+                        <Image Source="{Binding Path}" Width="70" Height="70"/>
                         <TextBlock Text="{Binding Index}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </DataTemplate>
@@ -23,8 +23,9 @@
             </ListBox.ItemsPanel>
 
         </ListView>
-        <Button x:Name="NextBtn" Content="Next" HorizontalAlignment="Left" Margin="487,261,0,0" VerticalAlignment="Top" Width="143" Height="40" Click="NextBtn_Click" Background="#FFA9FFAD" FontSize="18"/>
-        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Left" Margin="257,261,0,0" VerticalAlignment="Top" Width="143" Height="40" Click="BackBtn_Click" Background="#FFFFA9A9" FontSize="18"/>
+        <Button x:Name="NextBtn" Content="Next" HorizontalAlignment="Left" Margin="460,177,0,0" Width="143" Click="NextBtn_Click" Background="#FFA9FFAD" FontSize="18" Height="40" VerticalAlignment="Top"/>
+        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Left" Margin="238,177,0,0" Width="143" Click="BackBtn_Click" Background="#FFFFA9A9" FontSize="18" Height="40" VerticalAlignment="Top"/>
+        <Label x:Name="IndexLabel" Content="Label" HorizontalAlignment="Left" Margin="688,177,0,0" VerticalAlignment="Top" FontSize="22"/>
 
     </Grid>
 </Window>

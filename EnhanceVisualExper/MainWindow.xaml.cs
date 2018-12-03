@@ -61,11 +61,16 @@ namespace EnhanceVisualExper
             }
 
             ImgList.ItemsSource = list;
+
+            IndexLabel.Content = watchingIndex.ToString() + "/50";
         }
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
             watchingIndex++;
+
+            if (watchingIndex > 50)
+                watchingIndex = 50;
 
             BindList();
         }
@@ -73,6 +78,9 @@ namespace EnhanceVisualExper
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             watchingIndex--;
+
+            if (watchingIndex < 0)
+                watchingIndex = 0;
 
             BindList();
         }

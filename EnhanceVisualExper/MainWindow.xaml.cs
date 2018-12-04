@@ -30,6 +30,8 @@ namespace EnhanceVisualExper
         {
             InitializeComponent();
 
+            imagePath = GetImageName();
+
             BindList();
         }
 
@@ -37,7 +39,7 @@ namespace EnhanceVisualExper
         {
             List<string> fileNames = new List<string>();
 
-            foreach (var fileName in System.IO.Directory.GetFiles(@"A:\ドキュメント\Labo\LocalRipository\img", "*", System.IO.SearchOption.AllDirectories))
+            foreach (var fileName in System.IO.Directory.GetFiles(@"D:\Documents\GitRipository\img", "*", System.IO.SearchOption.AllDirectories))
             {
                 //Only Filename
                 fileNames.Add(System.IO.Path.GetFileName(fileName));
@@ -52,16 +54,22 @@ namespace EnhanceVisualExper
         private void BindList()
         {
             List<Image> list = new List<Image>();
-            imagePath = GetImageName();
-
+            
             for (int i = 0; i < 100; i++)
             {
                 list.Add(new Image
                 {
                     Index = (i + 1).ToString(),
-                    Path = @"A:\ドキュメント\Labo\LocalRipository\outimg\continuity_hue\" + imagePath[watchingIndex].Replace(".jpg", "") + "_" + i.ToString() + ".jpg"
+                    Path = @"D:\Documents\GitRipository\outimg\continuity_hue\All\" + imagePath[watchingIndex].Replace(".jpg", "") + "_" + i.ToString() + ".jpg"
                 });
             }
+
+            BitmapImage btm = new BitmapImage();
+            btm.BeginInit();
+            btm.UriSource = new Uri(@"D:\Documents\GitRipository\outimg\continuity_hue\All\" + imagePath[watchingIndex].Replace(".jpg", "") + "_0.jpg");
+            btm.EndInit();
+
+            InputImg.Source = btm;
 
             ImgList.ItemsSource = list;
 
@@ -82,7 +90,7 @@ namespace EnhanceVisualExper
                         selectedTable[watchingIndex, i] = 1;
                     }
                 }
-                Console.WriteLine(selectedItemIndexes[0] + "-" + selectedItemIndexes[1] + "-" + selectedItemIndexes[2]);
+                Console.WriteLine(watchingIndex + ":" + selectedItemIndexes[0] + "-" + selectedItemIndexes[1] + "-" + selectedItemIndexes[2]);
             }
         }
 
@@ -94,6 +102,8 @@ namespace EnhanceVisualExper
                 watchingIndex = 50;
 
             Write2Matrix();
+
+
 
             BindList();
         }

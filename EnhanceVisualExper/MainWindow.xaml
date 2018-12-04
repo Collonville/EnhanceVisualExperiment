@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EnhanceVisualExper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="273.696" Width="879.902" Background="#FF3A3A3A">
-    <Grid Margin="0,0,0,17">
-        <ListView Name="ImgList" ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="0,0,0,72" SelectionMode="Multiple" Background="#FF383838">
+        Title="MainWindow" Height="320" Width="1280" Background="#FF3A3A3A">
+    <Grid Margin="0,0,0,0">
+        <ListView Name="ImgList" ScrollViewer.HorizontalScrollBarVisibility="Auto" SelectionMode="Multiple" Background="#FF383838" Height="166" VerticalAlignment="Top">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Image Source="{Binding Path}" Width="70" Height="70"/>
+                        <Image Source="{Binding Path}" Width="80" Height="80" RenderOptions.BitmapScalingMode="Unspecified"/>
                         <TextBlock Text="{Binding Index}" HorizontalAlignment="Center" Foreground="White" FontSize="16"/>
                     </StackPanel>
                 </DataTemplate>
@@ -23,10 +23,12 @@
             </ListBox.ItemsPanel>
 
         </ListView>
-        <Button x:Name="NextBtn" Content="Next" HorizontalAlignment="Left" Margin="460,177,0,0" Width="143" Click="NextBtn_Click" Background="#FFA9FFAD" FontSize="18" Height="40" VerticalAlignment="Top"/>
-        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Left" Margin="238,177,0,0" Width="143" Click="BackBtn_Click" Background="#FFFFA9A9" FontSize="18" Height="40" VerticalAlignment="Top"/>
-        <Label x:Name="IndexLabel" Content="Label" HorizontalAlignment="Left" Margin="688,177,0,0" VerticalAlignment="Top" FontSize="22" Background="{x:Null}" Foreground="White"/>
-        <Button x:Name="WriteCSVBtn" Content="Write To CSV" HorizontalAlignment="Left" Height="36" Margin="25,180,0,0" VerticalAlignment="Top" Width="107" RenderTransformOrigin="0.564,0.011" Click="WriteCSVBtn_Click"/>
+        <Button x:Name="NextBtn" Content="Next" HorizontalAlignment="Left" Margin="508,203,0,0" Width="144" Click="NextBtn_Click" Background="#FFA9FFAD" FontSize="18" Height="40" VerticalAlignment="Top" RenderTransformOrigin="0.424,-0.075"/>
+        <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Left" Margin="306,203,0,0" Width="142" Click="BackBtn_Click" Background="#FFFFA9A9" FontSize="18" Height="40" VerticalAlignment="Top"/>
+        <Label x:Name="IndexLabel" Content="Label" HorizontalAlignment="Left" Margin="695,203,0,0" VerticalAlignment="Top" FontSize="22" Background="{x:Null}" Foreground="White" Height="40"/>
+        <Button x:Name="WriteCSVBtn" Content="Write To CSV" HorizontalAlignment="Left" Height="36" Margin="51,203,0,0" VerticalAlignment="Top" Width="107" RenderTransformOrigin="0.564,0.011" Click="WriteCSVBtn_Click"/>
+        <Image x:Name="InputImg" HorizontalAlignment="Left" Margin="808,171,0,0" Width="80" Height="80" VerticalAlignment="Top"/>
+        <Label Content="入力画像" HorizontalAlignment="Left" Margin="808,251,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="28" Width="80" HorizontalContentAlignment="Center"/>
 
     </Grid>
 </Window>

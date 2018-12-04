@@ -68,7 +68,7 @@ namespace EnhanceVisualExper
             IndexLabel.Content = watchingIndex.ToString() + "/50";
         }
 
-        private void OutputResult()
+        private void Write2Matrix()
         {
             //https://stackoverflow.com/questions/3836313/getting-the-index-of-multiple-selected-items-in-a-listbox-using-silverlight
             List<int> selectedItemIndexes = (from object o in ImgList.SelectedItems select ImgList.Items.IndexOf(o)).ToList();
@@ -84,9 +84,6 @@ namespace EnhanceVisualExper
                 }
                 Console.WriteLine(selectedItemIndexes[0] + "-" + selectedItemIndexes[1] + "-" + selectedItemIndexes[2]);
             }
-
-
-
         }
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
@@ -96,7 +93,7 @@ namespace EnhanceVisualExper
             if (watchingIndex > 50)
                 watchingIndex = 50;
 
-            OutputResult();
+            Write2Matrix();
 
             BindList();
         }
@@ -113,14 +110,14 @@ namespace EnhanceVisualExper
 
         private void WriteCSVBtn_Click(object sender, RoutedEventArgs e)
         {
-            StreamWriter sw = new StreamWriter(@"test.csv", true, Encoding.UTF8);
+            StreamWriter sw = new StreamWriter($"{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.csv", true, Encoding.UTF8);
 
             List<String> csvLine = new List<String>();
 
             for(int imageNum = 0; imageNum < 50; imageNum++)
             {
-
                 csvLine = new List<string>();
+
                 for (int i = 0; i < 100; i++)
                 {
                     csvLine.Add(selectedTable[imageNum, i].ToString());
@@ -129,7 +126,6 @@ namespace EnhanceVisualExper
                 sw.WriteLine(String.Join(",", csvLine.ToArray()));
             }
             
-
             sw.Dispose();
         }
     }

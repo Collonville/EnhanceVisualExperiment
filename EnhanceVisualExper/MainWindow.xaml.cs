@@ -18,6 +18,9 @@ namespace EnhanceVisualExper
         private int[,] selectedTable = new int[50, 100];
         private const int ImageCollectNUM = 4;
 
+        private const string InputImagePath = @"C:\Users\ht235_000\Documents\Laboratory\EnhanceImage\img";
+        private const string AllImagePath = @"C:\Users\ht235_000\Documents\Laboratory\EnhanceImage\outimg\continuity_hue\All\";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +34,7 @@ namespace EnhanceVisualExper
         {
             List<string> fileNames = new List<string>();
 
-            foreach (var fileName in System.IO.Directory.GetFiles(@"C:\Users\ht235_000\Documents\Laboratory\EnhanceImage\img", "*", System.IO.SearchOption.AllDirectories))
+            foreach (var fileName in System.IO.Directory.GetFiles(InputImagePath, "*", System.IO.SearchOption.AllDirectories))
             {
                 //Only Filename
                 fileNames.Add(System.IO.Path.GetFileName(fileName));
@@ -52,7 +55,7 @@ namespace EnhanceVisualExper
                 list.Add(new Image
                 {
                     Index = (i + 1).ToString(),
-                    Path = @"C:\Users\ht235_000\Documents\Laboratory\EnhanceImage\outimg\continuity_hue\All\" + imagePath[watchingIndex].Replace(".jpg", "") + "_" + i.ToString() + ".jpg"
+                    Path = AllImagePath + imagePath[watchingIndex].Replace(".jpg", "") + "_" + i.ToString() + ".jpg"
                 });
             }
 
@@ -61,7 +64,7 @@ namespace EnhanceVisualExper
             //入力画像の更新
             BitmapImage btm = new BitmapImage();
             btm.BeginInit();
-            btm.UriSource = new Uri(@"C:\Users\ht235_000\Documents\Laboratory\EnhanceImage\outimg\continuity_hue\All\" + imagePath[watchingIndex].Replace(".jpg", "") + "_0.jpg");
+            btm.UriSource = new Uri(AllImagePath + imagePath[watchingIndex].Replace(".jpg", "") + "_0.jpg");
             btm.EndInit();
 
             InputImg.Source = btm;

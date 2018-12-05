@@ -25,6 +25,7 @@ namespace EnhanceVisualExper
         private List<string> imagePath;
         private int watchingIndex = 0;
         private int[,] selectedTable = new int[50, 100];
+        private const int ImageCollectNUM = 4;
 
         public MainWindow()
         {
@@ -39,7 +40,7 @@ namespace EnhanceVisualExper
         {
             List<string> fileNames = new List<string>();
 
-            foreach (var fileName in System.IO.Directory.GetFiles(@"D:\Documents\GitRipository\img", "*", System.IO.SearchOption.AllDirectories))
+            foreach (var fileName in System.IO.Directory.GetFiles(@"C:\Users\ht235_000\Documents\Laboratory\EnhanceImage\img", "*", System.IO.SearchOption.AllDirectories))
             {
                 //Only Filename
                 fileNames.Add(System.IO.Path.GetFileName(fileName));
@@ -60,20 +61,22 @@ namespace EnhanceVisualExper
                 list.Add(new Image
                 {
                     Index = (i + 1).ToString(),
-                    Path = @"D:\Documents\GitRipository\outimg\continuity_hue\All\" + imagePath[watchingIndex].Replace(".jpg", "") + "_" + i.ToString() + ".jpg"
+                    Path = @"C:\Users\ht235_000\Documents\Laboratory\EnhanceImage\outimg\continuity_hue\All\" + imagePath[watchingIndex].Replace(".jpg", "") + "_" + i.ToString() + ".jpg"
                 });
             }
 
+            ImgList.ItemsSource = list;
+
+            //入力画像の更新
             BitmapImage btm = new BitmapImage();
             btm.BeginInit();
-            btm.UriSource = new Uri(@"D:\Documents\GitRipository\outimg\continuity_hue\All\" + imagePath[watchingIndex].Replace(".jpg", "") + "_0.jpg");
+            btm.UriSource = new Uri(@"C:\Users\ht235_000\Documents\Laboratory\EnhanceImage\outimg\continuity_hue\All\" + imagePath[watchingIndex].Replace(".jpg", "") + "_0.jpg");
             btm.EndInit();
 
             InputImg.Source = btm;
 
-            ImgList.ItemsSource = list;
-
-            IndexLabel.Content = watchingIndex.ToString() + "/50";
+            //インデックス表示の更新
+            IndexLabel.Content = watchingIndex.ToString() + "/49";
         }
 
         private void Write2Matrix()
@@ -81,7 +84,7 @@ namespace EnhanceVisualExper
             //https://stackoverflow.com/questions/3836313/getting-the-index-of-multiple-selected-items-in-a-listbox-using-silverlight
             List<int> selectedItemIndexes = (from object o in ImgList.SelectedItems select ImgList.Items.IndexOf(o)).ToList();
 
-            if (selectedItemIndexes.Count == 3)
+            if (selectedItemIndexes.Count == ImageCollectNUM)
             {
                 for (int i = 0; i < 100; i++)
                 {
@@ -90,20 +93,23 @@ namespace EnhanceVisualExper
                         selectedTable[watchingIndex, i] = 1;
                     }
                 }
-                Console.WriteLine(watchingIndex + ":" + selectedItemIndexes[0] + "-" + selectedItemIndexes[1] + "-" + selectedItemIndexes[2]);
+                Console.WriteLine(watchingIndex + ":" + selectedItemIndexes[0] + "-" + selectedItemIndexes[1] + "-" + selectedItemIndexes[2] + "-" + selectedItemIndexes[3]);
+            }
+            else
+            {
+                Console.WriteLine("Select " + ImageCollectNUM + "Pictures!!!");
             }
         }
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
-            watchingIndex++;
-
-            if (watchingIndex > 50)
-                watchingIndex = 50;
-
+            //選択行列の更新
             Write2Matrix();
 
+            watchingIndex++;
 
+            if (watchingIndex >= 50)
+                watchingIndex = 49;
 
             BindList();
         }
@@ -137,6 +143,8 @@ namespace EnhanceVisualExper
             }
             
             sw.Dispose();
+
+            Console.WriteLine("Exported CSV");
         }
     }
 }
